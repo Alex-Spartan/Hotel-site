@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+}
+
+header {
+    height: 100%;
+    width: 100%;
+    background: url(hotel-images/beach.jpg) no-repeat center/cover;
+}
+
+nav{
+    padding: 50px 200px;
+    display: flex;
+    justify-content: space-between;
+    height: 200px;
+}
+
+nav div h1{
+    font-size: 40px;
+    font-weight: 600;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: black;
+    padding: 10px 15px;
+    font-size: 24px;
+    font-weight: 400;
+    border-radius: 8px;
+}
+
+nav ul li a:hover{
+    background-color: aliceblue;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    margin: 20px;
+}
+
+section .head-text{
+    margin-bottom: 20px;
+}
+
+section div h1{
+    font-size: 40px;
+    color: white;
+    font-style: oblique;
+    margin-bottom: 15px;
+}
+
+section div p{
+    font-size: 22px;
+}
+
+section .btn{
+    position: relative;
+    top: 0;
+    left: -350px;
+    margin: 15px;
+    padding: 10px 20px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+section .btn a{
+    text-decoration: none;
+    color: black;
+}
+
+section .btn:hover{
+    background-color: rgb(202, 202, 202);
+}
