@@ -20,9 +20,10 @@ nav{
     display: flex;
     justify-content: space-between;
     height: 200px;
+    /* position: fixed; */
 }
 
-nav div h1{
+nav div , .head-text h1{
     font-size: 40px;
     font-weight: 600;
 }
@@ -46,7 +47,7 @@ nav ul li a:hover{
     background-color: aliceblue;
 }
 
-section{
+.sec{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,22 +56,22 @@ section{
     margin: 20px;
 }
 
-section .head-text{
+.sec .head-text{
     margin-bottom: 20px;
 }
 
-section div h1{
+.sec div h1{
     font-size: 40px;
     color: white;
     font-style: oblique;
     margin-bottom: 15px;
 }
 
-section div p{
+.sec div p{
     font-size: 22px;
 }
 
-section .btn{
+.sec .btn{
     position: relative;
     top: 0;
     left: -350px;
@@ -81,11 +82,60 @@ section .btn{
     cursor: pointer;
 }
 
-section .btn a{
+.sec .btn a{
     text-decoration: none;
     color: black;
 }
 
-section .btn:hover{
+.sec .btn:hover{
     background-color: rgb(202, 202, 202);
 }
+
+.off-sec{
+    padding: 30px;
+    background-color: #F8F6F4;
+}
+
+.head-text {
+    text-align: center;
+    margin: 50px 0px 70px;
+}
+
+.offers {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 150px;
+    padding: 0 150px;
+}
+
+.option-box{
+    border: 1px solid rgba(37, 37, 37, 0.3);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.option-box h4{
+    padding: 5px 10px;
+    font-size: 20px;
+}
+
+.option-box p{
+    text-align: center;
+    padding-top: 5px; 
+}
+
+.offers .img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 5px;
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.4);
+    border-radius: 7px;
+    width: 80px;
+    margin: 15px auto 30px;
+}
+
+.offers .img img{
+    width: 50px;
+}
+
