@@ -14,7 +14,6 @@ router.post('/signup', async (req, res) => {
             phone: phone,
             password: await bcrypt.hash(password, 10)
         });
-        console.log("Created")
         res.status(201).json(await user.save());
     } catch (error) {
         console.log(error);
@@ -24,26 +23,53 @@ router.post('/signup', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
-        const { email, password} = req.body;
-        const user = await User.findOne({ email: email});
-        const isMatch = await bcrypt.compare(password, user.password);
+        const { email, password } = req.body;
+        const user = await User.findOne({ email: email });
+        const isMatch = bcrypt.compare(password, user.password);
 
-        if(user && isMatch){
-            console.log("logged in")
-            jwt.sign({email: email, id: user._id}, process.env.JWT_KEY, { expiresIn: '1h'}, (err, token) => {
-                if(err) {
+        if (user && isMatch) {
+            jwt.sign({ email: email, id: user._id, name: user.name }, process.env.JWT_KEY, { expiresIn: '1h' }, (err, token) => {
+                if (err) {
                     console.log(err);
                     res.status(500).send("Internal Server Error")
                 }
-                res.cookie('token', token).status(200).send("Logged In")
+                res.cookie('token', token).status(200).send(user)
             })
         } else {
             res.status(401).send("Invalid")
         }
-        
+
     } catch (error) {
         console.log(error);
-        res.status(500).send("Internal Server Error")
+        res.status(500).send("Internal Server Error");
+    }
+})
+
+router.get('/profile', async (req, res) => {
+    try {
+        const { token } = req.cookies;
+        if (token) {
+            jwt.verify(token, process.env.JWT_KEY, {}, async (err, data) => {
+                if (err) {
+                    res.status(500).json(err);
+                }
+                const user = await User.findById(data._id)
+                res.status(200).json(user)
+            })
+        } else {
+            res.json(null)
+        }
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+router.post('/logout', (req, res) => {
+    try {
+        res.cookie("token", "");
+        res.status(200).json("deleted");
+    } catch (err) {
+        console.log(err);
     }
 })
 

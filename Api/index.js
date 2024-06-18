@@ -1,6 +1,5 @@
-import express from 'express';
+import express, { Router }from 'express';
 import cors from 'cors';
-import { Router } from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';

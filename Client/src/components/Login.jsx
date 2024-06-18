@@ -1,22 +1,25 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { loginBg } from "../assets/Index";
 
 import { Form, Link, useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import axios from "axios";
+import { UserContext } from "../UserContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext)
   const setValue = (e, setVariable) => {
     setVariable(e.target.value);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      await axios.post("/auth/login", { email, password}, { withCredentials: true })
-      navigate("/")
+      const { data } = await axios.post("/auth/login", { email, password});
+      setUser(data);
+      navigate("/");
     } 
     catch (error) {
       console.log(error);
