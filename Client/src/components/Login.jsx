@@ -17,7 +17,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const { data } = await axios.post("/auth/login", { email, password});
+      const { data } = await axios.post("/auth/login", { email, password });
       setUser(data);
       navigate("/");
     } 
@@ -38,6 +38,7 @@ const Login = () => {
                 type="email"
                 className="w-full border-none rounded-md px-2 py-1 flex-1 text-black"
                 value={email}
+                required
                 onChange={(e) => setValue(e, setEmail)}
               />
             </div>
@@ -51,6 +52,7 @@ const Login = () => {
                 type="password"
                 className="w-full border-none rounded-md px-2 py-1 flex-1 text-black"
                 value={password}
+                required
                 onChange={(e) => setValue(e, setPassword)}
               />
             </div>
