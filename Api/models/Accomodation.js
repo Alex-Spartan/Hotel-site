@@ -12,7 +12,7 @@ const accomodationSchema = new mongoose.Schema({
     extraInfo: String,
     checkIn: Date,
     checkOut: Date,
-    maxGuest: Number,
+    members: Number,
     ratings: {type: Number, required: true, default: 0},
 })
 

@@ -49,15 +49,18 @@ const Photoform = ({ photos, setPhotos }) => {
   };
 
   const deletePhoto = (link) => {
-    setPhotos([...photos.filter(photo => photo != link)]);
-  }
+    setPhotos((currentPhotos) => {
+      const updatedPhotos = currentPhotos.filter(photo => photo !== link);
+      return updatedPhotos;
+    });
+  };
 
   return (
     <>
       <div className="flex gap-2 justify-center items-center">
         <input
           type="text"
-          value={photoLink}
+          value={photoLink || ''}
           onChange={(e) => {
             e.preventDefault();
             setPhotoLink(e.target.value);

@@ -4,7 +4,7 @@ const Home = () => {
   
   
   return (
-    <Header>
+    <Header >
 
     </Header>
   );

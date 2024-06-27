@@ -113,20 +113,20 @@ router.put('/accomodation/:id', async (req, res) => {
     const { id } = req.params;
     const updateData = req.body;
     try {
+        if (!id) {
+            return res.status(400).json({ error: "Id not provided" });
+        }
         const data = await Accomodation.findById(id);
-        if(!data) {
-            res.status(404).json({ error: "Accomodation not found" })
+        console.log(data);
+        if (!data) {
+            return res.status(404).json({ error: "Accomodation not found" });
         }
-        if (id === data.owner.toString()) {
-            const updatedAccomodation = await Accomodation.findByIdAndUpdate(id, updateData, { new: true})
-            res.json(updatedAccomodation);
-        } else {
-            res.json({ error: "Id not provided" });
-        }
+        const updatedAccomodation = await Accomodation.findByIdAndUpdate(id, updateData, { new: true });
+        res.json(updatedAccomodation);
     } catch (err) {
-        res.status(500).json(err);
+        res.status(500).json({ error: err.message });
     }
-})
+});
 
 
 module.exports = router;

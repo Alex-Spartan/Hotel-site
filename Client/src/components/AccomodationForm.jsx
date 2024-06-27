@@ -113,7 +113,7 @@ const AccomodationForm = () => {
           </span>
         </div>
       )}
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="m-4 md:m-8">
           {preInput("Title", "Let your Hotel be famous. Put it's name")}
           <input
@@ -217,7 +217,7 @@ const AccomodationForm = () => {
             </label>
           </div>
           <button
-            onClick={handleSubmit}
+            type="submit"
             className="mt-4 p-1 w-full border-none text-white bg-[#272D2D] rounded-lg"
           >
             Save
