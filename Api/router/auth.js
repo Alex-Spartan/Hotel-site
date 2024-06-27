@@ -7,14 +7,14 @@ const router = express.Router();
 
 router.post('/signup', async (req, res) => {
     try {
-        const { name, email, password, phone } = req.body;
+        const { name, email, password } = req.body;
         const user = new User({
             name: name,
             email: email,
-            phone: phone,
             password: await bcrypt.hash(password, 10)
         });
-        res.status(201).json(await user.save());
+        await user.save();
+        res.status(201).json(user);
     } catch (error) {
         console.log(error);
         res.status(500).send("Internal Server Error");

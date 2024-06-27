@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 dotenv.config();
 
 const authRouter = require('./router/auth.js');
-const placesRouter = require('./router/placesForm.js');
+const accomodationRouter = require('./router/accomodationForm.js');
 //kbs9Fq4X4BIsJqqV
 const app = express();
 const port = 3000;
@@ -31,7 +31,7 @@ app.get('/test', (req, res) => {
 });
 
 app.use('/auth', authRouter);
-app.use('/places', placesRouter);
+app.use('/places', accomodationRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

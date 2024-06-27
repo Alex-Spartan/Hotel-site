@@ -1,20 +1,24 @@
 import axios from "axios";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
+import { UserContext } from "../UserContext";
 
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const setValue = (e, setVariable) => {
     setVariable(e.target.value);
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/auth/signup", { name, email, password, phone });
+      const user = await axios.post("/auth/signup", { name, email, password });
+      setUser(user.data);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -51,19 +55,7 @@ const Signup = () => {
               />
             </div>
           </div>
-          <div className="mt-6">
-            <div className="mb-1">
-              <label className="">Phone no: </label>
-            </div>
-            <div>
-              <input
-                type="text"
-                className="w-full border-none rounded-md px-2 py-1 flex-1 text-black"
-                value={phone}
-                onChange = {(e) => setValue(e, setPhone )}
-              />
-            </div>
-          </div>
+          
           <div className="mt-6">
             <div className="mb-1">
               <label className="">Password: </label>

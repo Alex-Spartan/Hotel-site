@@ -11,6 +11,8 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Account from "./pages/Account";
+import Accomodation from "./components/Accomodation";
+import AccomodationForm from "./components/AccomodationForm";
 
 
 axios.defaults.baseURL = "http://localhost:3000";
@@ -22,7 +24,9 @@ function App() {
       <Route path="/" element={<Home />} />,
       <Route path="/login" element={<Login />} />,
       <Route path="/signup" element={<Signup />} />,
-      <Route path="/account/:subpage?" element={<Account />} />
+      <Route path="/account/:subpage?" element={<Account />} />,
+      <Route path="/account/accomodation/new" element={<AccomodationForm />} />,
+      <Route path="/account/accomodation/:id" element={<AccomodationForm />} />
     ])
   );
   return (
