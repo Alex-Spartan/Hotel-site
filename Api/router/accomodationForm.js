@@ -117,7 +117,6 @@ router.put('/accomodation/:id', async (req, res) => {
             return res.status(400).json({ error: "Id not provided" });
         }
         const data = await Accomodation.findById(id);
-        console.log(data);
         if (!data) {
             return res.status(404).json({ error: "Accomodation not found" });
         }

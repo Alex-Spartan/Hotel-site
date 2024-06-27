@@ -5,6 +5,7 @@ import { UserContext } from "../UserContext";
 
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { IoTrashOutline } from "react-icons/io5";
+import { IoStarOutline } from "react-icons/io5";
 
 const Photoform = ({ photos, setPhotos }) => {
   const [photoLink, setPhotoLink] = useState("");
@@ -48,19 +49,26 @@ const Photoform = ({ photos, setPhotos }) => {
       .catch((err) => console.log(err));
   };
 
-  const deletePhoto = (link) => {
+  const deletePhoto = (e, link) => {
+    e.preventDefault();
     setPhotos((currentPhotos) => {
-      const updatedPhotos = currentPhotos.filter(photo => photo !== link);
+      const updatedPhotos = currentPhotos.filter((photo) => photo !== link);
       return updatedPhotos;
     });
   };
+
+  const makeCover = (e, link) => {
+    e.preventDefault();
+    const photoArray = [...photos.filter(photo => photo !== link)]
+    setPhotos([link, ...photoArray]);
+  }
 
   return (
     <>
       <div className="flex gap-2 justify-center items-center">
         <input
           type="text"
-          value={photoLink || ''}
+          value={photoLink || ""}
           onChange={(e) => {
             e.preventDefault();
             setPhotoLink(e.target.value);
@@ -85,10 +93,18 @@ const Photoform = ({ photos, setPhotos }) => {
                 height={200}
                 className="h-[15rem] rounded-xl object-cover"
                 alt="img"
-                
               />
-              <button onClick={() => deletePhoto(link)} className="absolute bottom-3 right-1/2 p-2 rounded-lg bg-gray-700 bg-opacity-80 md:bottom-2 md:right-3">
+              <button
+                onClick={(e) => deletePhoto(e, link)}
+                className="absolute bottom-3 right-1/2 p-2 rounded-lg bg-gray-700 bg-opacity-80 md:bottom-2 md:right-3"
+              >
                 <IoTrashOutline />
+              </button>
+              <button
+                onClick={(e) => makeCover(e, link)}
+                className="absolute bottom-3 left-5 p-2 rounded-lg bg-gray-700 bg-opacity-80 md:bottom-2 md:left  -3"
+              >
+                <IoStarOutline />
               </button>
             </div>
           ))}
